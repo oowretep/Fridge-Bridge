@@ -167,7 +167,12 @@ li>a {
 
 .recipe-list {
     display: none;
-    display: inline-block;
+}
+
+.recipe-list > div {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
 }
 
 .recipe {
@@ -283,6 +288,11 @@ li>a {
 
     .photo-img {
         margin-top: 5%;
+    }
+
+    /* food */
+    .recipe-list > div > div > img{
+        height: 20vmin ;
     }
 }
 
