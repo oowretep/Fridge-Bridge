@@ -149,8 +149,7 @@ function renderIngredients(recipeObj, recipeUrl) {
     var title = $('<p>').text(recipeObj.recipeName + ' by ' + recipeObj.sourceDisplayName);
     $('.recipe h2').append(title);
     var imageOfDish = $('<img>').attr('src', recipeObj.imageUrlsBySize["90"]);
-    var imageDiv = $('<div>').append($(imageOfDish));
-    $('.recipe-photo').append(imageDiv);
+    $('.recipe-photo').append(imageOfDish);
     var instructions = $('<a>').attr({
         href: recipeUrl,
         target: '_blank'

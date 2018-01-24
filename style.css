@@ -95,7 +95,6 @@ li>a {
     height: auto;
     background-color: papayawhip;
     margin: 0 auto;
-    margin-bottom: 5px;
 }
 
 .drink-search,
@@ -103,6 +102,10 @@ li>a {
     text-align: center;
 }
 
+.food-ingredients > h3,
+.ingred-sec > h3 {
+    margin-top: 0;
+}
 
 
 
@@ -110,6 +113,7 @@ li>a {
 /* drink area */
 .drink-container {
     border-right: 1px solid lightsalmon;
+    margin-bottom: 1%;
 }
 
 .drink-results {
@@ -158,11 +162,13 @@ li>a {
 /* food */
 .food-container {
     border-left: 1px solid lightsalmon;
+    margin-bottom: 1%;
 }
 
 .food-results {
     display: inline-block;
     margin-top: 1%;
+    width: 100%;
 }
 
 .recipe-list {
@@ -179,14 +185,33 @@ li>a {
     display: none;
 }
 
-/* carousel */
-.carousel-container {
-    width: 60%;
-    margin: auto;
-    border: 6px solid lightsalmon;
-    border-radius: 10px;
+.recipe-photo > img {
+    height: 10em;
+    width: 10em;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
+.food-ingredients,
+.recipe > h2,
+.recipe > .vid-tutorials > h3,
+.recipe-photo {
+    text-align: center;
+}
+
+.food-ingredients > ul {
+    padding: 0;
+}
+
+.vid-tutorials {
+    margin-bottom: 1%;
+}
+
+.instructions a {
+    overflow-wrap: break-word;
+}
+
+/* carousel */
 .carousel-container .hidden {
     display: none;
 }
@@ -197,12 +222,6 @@ li>a {
 
 .carousel-inner {
     background-color: lightsalmon;
-}
-
-.carousel-container {
-    margin: auto;
-    border: 6px solid lightsalmon;
-    border-radius: 10px;
 }
 
 #video0 {
@@ -277,7 +296,7 @@ li>a {
     .drink-container,
     .food-container {
         border: none;
-        max-height: 300px;
+        max-height: 400px;
         overflow: auto;
     }
 
