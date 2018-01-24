@@ -46,6 +46,8 @@ function backToListDrink() {
  * Function to start searching cocktail database
  */
 function searchDB() {
+    $('.back-drink').addClass('disabled');
+    $('.drink-list > div').empty();
     $('.drink-list').css('display', 'none');
     $('.drink-ing div p').text('');
     $('.drink-ing').css('display', 'none');

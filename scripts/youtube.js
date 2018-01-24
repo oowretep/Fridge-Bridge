@@ -15,12 +15,10 @@ function initializeApp() {
  * when search is utilized, takes user's terms and uses youtube api to pull up related tutorials/recipes
  */
 function add_vids_to_carousel() {
-    console.log('click initiated');
     if ($(this).attr('id') === 'submit-drink') {
         $(".drinks-item").empty();
         var drinkSearchTerm = $('.input-drink').val() + '';
         $('.drinks-search-term').text('"' + drinkSearchTerm + '"');
-        console.log('searching for: ', drinkSearchTerm);
         var drinkDataObject = {
             q: drinkSearchTerm + ' alcohol drink recipe tutorial',
             maxResults: 5
@@ -31,9 +29,7 @@ function add_vids_to_carousel() {
             url: 'http://s-apis.learningfuze.com/hackathon/youtube/search.php',
             data: drinkDataObject,
             success: function (result) {
-                console.log('ajax call success');
                 for (var i = 0; i < result.video.length; i++) {
-                    console.log(result.video[i].id);
                     $("#drinks-carousel").removeClass('hidden');
                     var videosList = $("<iframe>", {
                         width: '90%',
@@ -48,7 +44,6 @@ function add_vids_to_carousel() {
         $(".food-item").empty();
         var foodSearchTerm = $('#food-input').val() + '';
         $('.food-search-term').text('"' + foodSearchTerm + '"');
-        console.log(foodSearchTerm);
         var foodDataObject = {
             q: foodSearchTerm + ' meals recipe tutorial',
             maxResults: 5
@@ -59,9 +54,7 @@ function add_vids_to_carousel() {
             url: 'http://s-apis.learningfuze.com/hackathon/youtube/search.php',
             data: foodDataObject,
             success: function (result) {
-                console.log('ajax call success');
                 for (var i = 0; i < result.video.length; i++) {
-                    console.log(result.video[i].id);
                     $("#food-carousel").removeClass('hidden');
                     var videosList = $("<iframe>", {
                         width: '90%',
