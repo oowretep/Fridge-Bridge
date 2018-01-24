@@ -59,6 +59,9 @@ function displayErrorMessage(message){
  *
  */
 function getRecipe() {
+    $('.back-food').addClass('disabled');
+    $('.recipe-list > div').empty();
+    $('.recipe').css('display', 'none');
     var ingredient = {
         recipe: $('#food-input').val(),
     };
