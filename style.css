@@ -107,8 +107,17 @@ li>a {
     margin-top: 0;
 }
 
+.back-drink,
+.back-food,
+.drink-spinner,
+.food-spinner {
+    display: none;
+}
 
-
+.drink-spinner,
+.food-spinner {
+    margin-left: 5%;
+}
 
 /* drink area */
 .drink-container {
@@ -157,6 +166,14 @@ li>a {
 .drink-ing > h2,
 .youtube-sec h3 {
     text-align: center;
+}
+
+.drink-div {
+    margin: auto;
+    display: inline-block;
+    width: 20vmin;
+    text-align: center;
+    cursor: pointer;
 }
 
 /* food */
@@ -307,6 +324,11 @@ li>a {
 
     .photo-img {
         margin-top: 5%;
+    }
+
+    .drink-div {
+        margin: 20px 0;
+        width: 40vmin;
     }
 
     /* food */

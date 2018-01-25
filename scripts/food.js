@@ -34,7 +34,7 @@ function addClickHandler() {
  * after user clicks on drink name and data comes up, clicking back to list will move the page back to drink list
  */
 function backToListFood() {
-    $('.back-food').addClass('disabled');
+    $('.back-food').css('display', 'none');
     var recipe = $('.recipe');
     var recipeList = $('.recipe-list');
     if (recipe.css('display') !== 'none' && recipeList.css('display') === 'none') {
@@ -48,9 +48,12 @@ function backToListFood() {
  * @returns  {undefined}
  * shows modal and text for error
  */
-function displayErrorMessage(message){
+function displayErrorMessage(string1, string2, string3){
+    $('#error-modal .modal-body p').text('');
     $('#error-modal').modal('show');
-    $('.modal-body > p').text(message);
+    $('#error-modal .modal-body > p:nth-child(2)').text(string1);
+    $('#error-modal .modal-body > p:nth-child(3)').text(string2);
+    $('#error-modal .modal-body > p:last-child').text(string3);
 }
 /***************************************************************************************************
  * getRecipe
@@ -59,13 +62,14 @@ function displayErrorMessage(message){
  *
  */
 function getRecipe() {
-    $('.back-food').addClass('disabled');
+    $('.back-food').css('display', 'none');
     $('.recipe-list > div').empty();
     $('.recipe').css('display', 'none');
     var ingredient = {
         recipe: $('#food-input').val(),
     };
     if (ingredient.recipe !== '') {
+        $('.food-spinner').css('display', 'inline-block');
         $.ajax({
             dataType: 'JSON',
             url: 'https://api.yummly.com/v1/api/recipes?',
@@ -76,14 +80,21 @@ function getRecipe() {
                 'q': ingredient.recipe,
             },
             success: function (result) {
-                var recipeObj = {};
-                for (var i = 0; i < result.matches.length; i++) {
-                    recipeObj = result.matches[i];
-                    renderRecipe(recipeObj);
+                if (result.matches.length > 0) {
+                    $('.food-spinner').css('display', 'none');
+                    var recipeObj = {};
+                    for (var i = 0; i < result.matches.length; i++) {
+                        recipeObj = result.matches[i];
+                        renderRecipe(recipeObj);
+                    }
+                } else {
+                    $('.food-spinner').css('display', 'none');
+                    displayErrorMessage('Searching "Yummly"...', 'No recipes were found with searched ingredient: ' + ingredient.recipe + '.', 'Try "Chicken", "Salmon", "Rice"');
                 }
             },
         })
     } else {
+        $('.food-spinner').css('display', 'none');
         displayErrorMessage('Please enter a food ingredient before searching');
     }
 }
@@ -146,7 +157,7 @@ function renderIngredients(recipeObj, recipeUrl) {
     if ($('.recipe  h2') !== ''){
         $('.recipe h2 , .recipe-photo, .food-ingredients ul li, .instructions > a').empty();
     }
-    $('.back-food').removeClass('disabled');
+    $('.back-food').css('display', 'inline-block');
     $('.recipe').show();
     $('.recipe-list').hide();
     var title = $('<p>').text(recipeObj.recipeName + ' by ' + recipeObj.sourceDisplayName);

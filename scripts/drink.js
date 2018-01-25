@@ -31,7 +31,7 @@ function addClickHandlers() {
  * after user clicks on drink name and data comes up, clicking back to list will move the page back to drink list
  */
 function backToListDrink() {
-    $('.back-drink').addClass('disabled');
+    $('.back-drink').css('display', 'none');
     var drinkIng = $('.drink-ing');
     var drinkList = $('.drink-list');
     if (drinkIng.css('display') !== 'none' && drinkList.css('display') === 'none') {
@@ -46,7 +46,8 @@ function backToListDrink() {
  * Function to start searching cocktail database
  */
 function searchDB() {
-    $('.back-drink').addClass('disabled');
+    $('.drink-spinner').css('display', 'inline-block');
+    $('.back-drink').css('display', 'none');
     $('.drink-list > div').empty();
     $('.drink-list').css('display', 'none');
     $('.drink-ing div p').text('');
@@ -61,10 +62,12 @@ function searchDB() {
  * shows modal and text for error
  */
 function displayErrorMessage(string1, string2, string3){
+    $('#error-modal .modal-body p').text('');
     $('#error-modal').modal('show');
     $('#error-modal .modal-body > p:nth-child(2)').text(string1);
     $('#error-modal .modal-body > p:nth-child(3)').text(string2);
     $('#error-modal .modal-body > p:last-child').text(string3);
+    $('.drink-spinner').css('display', 'none');
 }
 
 //-----ajax call error-----//
@@ -101,6 +104,7 @@ function searchCocktail() {
                 if (data !== '') {
                     var allDrinks = JSON.parse(data);
                     if (allDrinks.drinks !== undefined || allDrinks.drinks.length !== 0) {
+                        $('.drink-spinner').css('display', 'none');
                         $('.drink-list > ul').empty();
                         for (var i = 0; i < allDrinks.drinks.length; i++) {
                             var drinkName = allDrinks.drinks[i].strDrink;
@@ -141,15 +145,7 @@ function renderDrinkList(name, photo) {
             margin: '2px 0 15px 0'
         }
     })
-    var drinkDiv = $('<div>', {
-        css: {
-            margin: 'auto',
-            display: 'inline-block',
-            width: '20vmin',
-            'text-align': 'center',
-            cursor: 'pointer',
-        }
-    }).click(getDataCocktail);
+    var drinkDiv = $('<div>').click(getDataCocktail).addClass('drink-div');
     $(drinkDiv).append(drinkPhoto, drinkName);
     $('.drink-list > div').append(drinkDiv);
 }
@@ -216,7 +212,7 @@ function getDataCocktail() {
  * after drink is selected and info is passed along, renders drink info in appropriate divs
  */
 function renderCocktailInfo(array) {
-    $('.back-drink').removeClass('disabled');
+    $('.back-drink').css('display', 'inline-block');
     $('.drink-list').css('display', 'none');
     $('.drink-ing').show();
     $('.photo-img > img').css('background-image', 'url(' + array[3] + ')');
