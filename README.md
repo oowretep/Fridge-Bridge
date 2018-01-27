@@ -2,7 +2,7 @@
 
 Hackathon project involving the combination of different data sources into an application
 
-![Alt text](/assets/readme.jpg?raw=true "Fridge Bridge")
+![Alt text](/images/readme.jpg?raw=true "Fridge Bridge")
 
 ## Notes
 - Combined 3 **external** resources via AJAX requests and presented their information
