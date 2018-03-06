@@ -98,7 +98,7 @@ function searchCocktail() {
     if (inputText !== '') {
         $.ajax({
             dataType: 'text',
-            url: 'http://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + inputText,
+            url: 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=' + inputText,
             method: 'get',
             success: function(data) {
                 if (data !== '') {
@@ -159,7 +159,7 @@ function getDataCocktail() {
     var validInput = $(this).text();
     $.ajax({
         dataType: 'JSON',
-        url: 'http://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + validInput,
+        url: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + validInput,
         method: 'get',
         success: function(data) {
             var passData = [];
